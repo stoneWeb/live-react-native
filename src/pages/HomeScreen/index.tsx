@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const mergeProps = (stateProps: any, dispatchProps: any, ownProps: any) => {
-    return Object.assign({}, ownProps, stateProps, dispatchProps);
+    return {...ownProps, ...stateProps, ...dispatchProps};
 };
 
 export default connect(
