@@ -1,7 +1,7 @@
 import {
     GET_HOME_LIST
 } from '../constants/ActionTypes';
-import { getLiveList } from '../configs/api';
+import { getLiveList } from '../utils/api';
 import {
     IAction
 } from '../Common/interface';
@@ -11,8 +11,7 @@ import {
 
 export default {
      fetchLiveList: () => async (dispatch: any) => {
-        let payload: IFetchDate | null = await getLiveList().catch(err => { console.log(err); });
-        console.log(payload);
+        let payload: IFetchDate | undefined = await getLiveList().catch(err => { console.log(err); });
         
         if (!payload) {
             payload = { state: 0 };

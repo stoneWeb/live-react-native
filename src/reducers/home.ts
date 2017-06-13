@@ -11,7 +11,7 @@ const initialState: IHomeState = {
     list: [],
     loading: false
 };
-export default function (state = initialState, action: IAction) {
+export default function (state: IHomeState = initialState, action: IAction) {
   const {payload, error, meta = {}, type} = action;
   let newState;
   
