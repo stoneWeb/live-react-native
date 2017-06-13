@@ -1,0 +1,48 @@
+{
+  "name": "rnts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "preinstall": "rm -rf typings",
+    "postinstall": "node node_modules/typings/dist/bin.js install",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "prebuild": "rm -rf build",
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@types/react-navigation": "^1.0.7",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.44.0",
+    "react-native-vector-icons": "^4.2.0",
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "thunk": "^0.0.1"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "1.9.2",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.6",
+    "tslint": "^5.3.2",
+    "typescript": "^2.3.3",
+    "typings": "^2.1.1"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "verbose": true
+  },
+  "pre-commit": {
+    "run": [
+      "lint-ts",
+      "compile-ts"
+    ]
+  }
+}
