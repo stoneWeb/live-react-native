@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { 
-    Button, 
+    Text, 
     Platform, 
     ScrollView, 
     StyleSheet 
@@ -21,13 +21,13 @@ export default class Live extends React.Component<any, any> {
     render () {
       const { navigation } = this.props;
       return <ScrollView style={styles.container}>
-              <Button onPress={() => navigation.goBack(null)} title='Go back' />
+              <Text>直播</Text>
             </ScrollView>;
     }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0,
-  },
+    margin: 10,
+  }
 });

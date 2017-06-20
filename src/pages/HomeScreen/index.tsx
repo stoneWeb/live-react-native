@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { 
     Text,
-    Button, 
     Platform, 
     ScrollView, 
     StyleSheet,
@@ -15,6 +14,7 @@ import {
 } from './home';
 import homeActions from '../../actions/home';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import LiveList from './liveList';
 
 class Home extends React.Component<any, any> {
     static navigationOptions = {
@@ -36,6 +36,9 @@ class Home extends React.Component<any, any> {
       const { actions } = this.props;
       console.log('----------- home Props ----------');
       actions.fetchLiveList();
+      /*actions.fetchLiveList({
+        liveonly: true
+      });*/
     }
 
     componentWillReceiveProps(nextProps: any) {
@@ -45,24 +48,20 @@ class Home extends React.Component<any, any> {
     }
 
     render() {
-      const { navigation } = this.props;
+      const { navigation, homeState } = this.props;
       return <ScrollView style={styles.container}>
-              <Button
-                onPress={() => navigation.navigate('Home')}
-                title='Go to home tab'
-              />
-              <Button
-                onPress={() => navigation.navigate('Live')}
-                title='Go to live tab'
-              />
-              <Button onPress={() => navigation.goBack(null)} title='Go back' />
+              {
+                homeState.list.length ?
+                <LiveList {...this.props}/>
+                : <Text>暂无直播</Text>
+              }
             </ScrollView>;
     }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    margin: 10,
   },
 });
 

@@ -11,7 +11,7 @@ const middlewares = [
 
 export default class App extends Component<any, any> {
     store = applyMiddleware(...middlewares)(createStore)(Reducer);
-    //store = createStore(Reducer);
+    
     render () {
         return (
             <Provider store={this.store}>

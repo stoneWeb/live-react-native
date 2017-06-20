@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import {
     TABVIEW,
+    LIVEPLAY,
+    BROADCASTLIVE,
 } from '../constants/Navigation';
 
 import TabScreen from '../pages/TabScreen/index';
+import LivePlayScreen from '../pages/LivePlayScreen/index';
+import BroadcastLiveScreen from '../pages/BroadcastLiveScreen/index';
 
 interface IArgs {
     dispatch: any;
@@ -13,7 +17,9 @@ interface IArgs {
 }
 
 export const AppNavigator = StackNavigator({
-    [TABVIEW]: { screen: TabScreen }
+    [TABVIEW]: { screen: TabScreen },
+    [LIVEPLAY]: { screen: LivePlayScreen },
+    [BROADCASTLIVE]: { screen: BroadcastLiveScreen }
 });
 
 const AppWithNavigationState = ({ dispatch, nav }: IArgs) => (

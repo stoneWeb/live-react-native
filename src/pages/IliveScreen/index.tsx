@@ -7,21 +7,20 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default class Follow extends React.Component<any, any> {
-  static navigationOptions = {
-      tabBarLabel: 'Follow',
+export default class Ilive extends React.Component<any, any> {
+    static navigationOptions = {
       tabBarIcon: ({ tintColor, focused }: any) => (
         <Ionicons
-          name={focused ? 'ios-aperture' : 'ios-aperture-outline'}
+          name={focused ? 'ios-videocam' : 'ios-videocam-outline'}
           size={26}
           style={{ color: tintColor }}
         />
-      ),
+      )
     };
     render () {
       const { navigation } = this.props;
       return <ScrollView style={styles.container}>
-              <Text>关注</Text>
+              <Text>直播</Text>
             </ScrollView>;
     }
 }

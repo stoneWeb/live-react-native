@@ -35,9 +35,13 @@ const TabView = TabNavigator(
         },
     },
     {
+        
         tabBarOptions: {
             activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff'
         },
+        /*tabBarComponent: ({}) => {
+            参考 https://github.com/react-community/react-navigation/issues/1863
+        }*/
     }
 );
 

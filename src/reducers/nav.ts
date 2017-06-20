@@ -3,7 +3,9 @@ import { AppNavigator } from '../navigators/Navigation';
 import {
   LOGIN,
   LOGOUT,
-  TABVIEW
+  TABVIEW,
+  LIVEPLAY,
+  BROADCASTLIVE
 } from '../constants/Navigation';
 
 const tabAction = AppNavigator.router.getStateForAction(NavigationActions.reset({
@@ -23,8 +25,9 @@ const initialNavState = AppNavigator.router.getStateForAction(
 
 export default (state = initialNavState, action: any) => {
   let nextState;
+  const { params = {}, type } = action;
   
-  switch (action.type) {
+  switch (type) {
     case LOGIN:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.back(),
@@ -33,7 +36,19 @@ export default (state = initialNavState, action: any) => {
       break;
     case LOGOUT:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: LOGIN }),
+        NavigationActions.navigate({ routeName: LOGIN, params }),
+        state
+      );
+      break;
+    case BROADCASTLIVE:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: BROADCASTLIVE, params }),
+        state
+      );
+      break;
+    case LIVEPLAY:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: LIVEPLAY, params }),
         state
       );
       break;

@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { 
-    Button, 
+    Text, 
     Platform, 
     ScrollView, 
-    StyleSheet 
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
+import {
+    BROADCASTLIVE,
+} from '../../constants/Navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class My extends React.Component<any, any> {
@@ -20,14 +24,17 @@ export default class My extends React.Component<any, any> {
     };
     render () {
       const { navigation } = this.props;
+      console.log(navigation);
       return <ScrollView style={styles.container}>
-              <Button onPress={() => navigation.goBack(null)} title='Go back' />
+              <TouchableOpacity onPress={() => navigation.dispatch({ type: BROADCASTLIVE })}>
+                <Text>我要直播</Text>
+              </TouchableOpacity>
             </ScrollView>;
     }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 20 : 0,
-  },
+    margin: 10,
+  }
 });

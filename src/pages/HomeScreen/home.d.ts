@@ -8,12 +8,6 @@ interface IListItem {
     uri: IUris[];
 }
 
-export interface IFetchDate {
-    state: number;
-    marker?: string | null;
-    data?: IListItem[];
-}
-
 export interface IHomeState {
     list: IListItem[];
     loading: boolean;

@@ -3,15 +3,18 @@ import {
 } from '../constants/ActionTypes';
 import { getLiveList } from '../utils/api';
 import {
+    IRGetLiveList
+} from '../utils/fetchInterface';
+import {
     IAction
 } from '../Common/interface';
 import {
-    IFetchDate,
-} from '../pages/HomeScreen/home';
+    IFetchDate
+} from '../utils/fetchInterface';
 
 export default {
-     fetchLiveList: () => async (dispatch: any) => {
-        let payload: IFetchDate | undefined = await getLiveList().catch(err => { console.log(err); });
+     fetchLiveList: (query?: IRGetLiveList) => async (dispatch: any) => {
+        let payload: IFetchDate | undefined = await getLiveList(query).catch(err => { console.log(err); });
         
         if (!payload) {
             payload = { state: 0 };

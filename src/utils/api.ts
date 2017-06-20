@@ -1,8 +1,13 @@
-const host = 'http://Leis-MacBook-Pro.local:3000';
+const host = 'http://localhost:3000';
 const ApiPath = host + '/api';
 import {
     IHash
 } from '../Common/interface';
+
+import {
+    IRGetLiveList,
+    IRGenerateRtmp
+} from './fetchInterface';
 
 const _fetch = (fetch_promise: Promise<any>, timeout = 15000) => {
     // fetch timeout
@@ -19,27 +24,20 @@ const json2query = (args: any = {}) => {
         .join('&');
 };
 
-const createOptions = (method: string = 'GET', header: IHash = {}): {} => {
+const createOptions = (method: string = 'GET', body?: {}, header: IHash = {}): {} => {
+    header = {...header,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
     let headers = new Headers(header);
-    headers.append('Accept', 'application/json');
-    
     return {
       method,
       headers,
-      credentials: 'include',
-      cache: 'default',
-      mode: 'cors'
+      body
     };
 };
 
-interface IGetLiveList {
-    liveonly?: boolean;
-    prefix?: string;
-    limit?: number;
-    marker?: string;
-}
-
-export const getLiveList = (query: IGetLiveList = {}) => {
+export const getLiveList = (query: IRGetLiveList = {}) => {
     query = json2query(query);
     let uri = `${ApiPath}/get_live_list`;
     if (query) {
@@ -48,3 +46,7 @@ export const getLiveList = (query: IGetLiveList = {}) => {
     return _fetch(fetch(uri, createOptions()))
         .then(d => d.json());
 };
+
+export const generateRtmp = (data: IRGenerateRtmp) => 
+    _fetch(fetch(`${ApiPath}/create_rtmp`, createOptions('POST', JSON.stringify(data))))
+        .then(d => d.json());
